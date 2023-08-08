@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.example.projetoibm.ProjetoIbmApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 85.902 s - in com.example.projetoibm.ProjetoIbmApplicationTests
