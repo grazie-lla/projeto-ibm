@@ -9,6 +9,8 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -26,11 +28,17 @@ public class ReservaSeviceTest {
     @InjectMocks
     private ReservaService reservaService;
 
+    LocalDateTime dataAtual = LocalDateTime.now();
+    LocalDateTime dataInicio = dataAtual.plusDays(1);
+    Date dataInicioDate = Date.from(dataInicio.toInstant(ZoneOffset.UTC));
+    LocalDateTime dataFim = dataAtual.plusDays(2);
+    Date dataFimDate = Date.from(dataFim.toInstant(ZoneOffset.UTC));
     @Test
     public void testFindAll(){
         List<Reserva> reservaList = reservaService.findAll();
         assertNotNull(reservaList);
     }
+
     @Test
     public void testFindById()throws ObjectNotFoundException {
         //entrada de dados
@@ -56,7 +64,8 @@ public class ReservaSeviceTest {
 
     @Test
     public void testCreateReserva() throws IllegalArgumentException {
-        Reserva reserva = new Reserva(1, "maria", new Date(), new Date(), 4, "CONFIRMADA");
+
+        Reserva reserva = new Reserva(1, "maria", dataInicioDate, dataFimDate, 4, "CONFIRMADA");
 
         when(reservaRepository.save(any(Reserva.class))).thenReturn(reserva);
 
@@ -83,7 +92,7 @@ public class ReservaSeviceTest {
     @Test
     public void testUpdateReserva() {
         Integer id = 1;
-        Reserva updatedReserva = new Reserva(id, "Maria", new Date(), new Date(), 2, "PENDENTE");
+        Reserva updatedReserva = new Reserva(id, "Maria", dataInicioDate, dataFimDate, 2, "PENDENTE");
         Reserva oldReserva = new Reserva(id, "Maria", new Date(), new Date(), 2, "CONFIRMADA");
 
         when(reservaRepository.findById(id)).thenReturn(Optional.of(oldReserva));
