@@ -14,7 +14,6 @@ Este projeto consiste em uma aplicação que permite que hóspedes façam reserv
 
 - Agendamento de estadias em datas específicas.
 - Registro de informações sobre o hóspede e a quantidade de pessoas.
-- Disponibilização de uma API REST para interação com uma aplicação.
 
 ## Como Executar
 
